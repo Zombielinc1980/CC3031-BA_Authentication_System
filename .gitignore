@@ -9,6 +9,6 @@ __pycache__/
 venv/
 env/
 
-# OS junk
+# OS stuff
 .DS_Store
 Thumbs.db
