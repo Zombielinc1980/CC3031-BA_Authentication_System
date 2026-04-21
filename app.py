@@ -32,7 +32,7 @@ def login():
             return render_template("login.html", form_data=request.form)
 
         session["user_id"] = user.id
-        return render_template("dashboard.html")
+        return render_template("Pdashboard.html")
     return render_template("login.html", form_data={})
 
 @app.route("/", methods=["GET", "POST"])
@@ -40,7 +40,7 @@ def register():
     user_id = session.get("user_id")
     if not user_id:
         return None
-    return render_template("login.html")
+    return render_template("register.html")
 
 # dashboard - all
 @app.route("/dashboard")
@@ -50,7 +50,7 @@ def dashboard():
 # employee+
 @app.route("/equipment")
 def equipment_list():
-    return render_template("equipment.html")
+    return render_template("equipment_list.html")
 
 @app.route("/customers")
 def customer_list():
