@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Rental Register</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        #name,
+        #days {
+        width: 60%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+        .container {
+            width: 350px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            color: #555;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="Rentals">
+        <h1>Rental Stuff LLC</h1>
+        <h2>Register</h2>
+
+        <form>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="equipment">Choose Equipment:</label><br>
+            <select id="equipment" name="equipment">
+                <option value="excavator">Excavator</option>
+                <option value="bulldozer">Bulldozer</option>
+                <option value="forklift">Forklift</option>
+                <option value="scissorlift">Scissor Lift</option>
+                <option value="generator">Generator</option>
+                <option value="aircompressor">Air Compressor</option>
+                <option value="chainsaw">Chainsaw</option>
+                <option value="lawnmower">Lawn Mower</option>
+                <option value="pressurewasher">Pressure Washer</option>
+                <option value="cementmixer">Cement Mixer</option>
+                <option value="drill">Power Drill</option>
+                <option value="ladder">Ladder</option>
+            </select><br><br>
+
+            <label for="days">Rental Days:</label><br>
+            <input type="number" id="days" name="days"><br><br>
+
+            <input type="submit" value="Register Rental">
+        </form>
+    </div>
+
+</body>
+</html>
