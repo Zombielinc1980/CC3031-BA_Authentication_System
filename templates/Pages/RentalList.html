@@ -13,15 +13,7 @@
             padding: 0;
         }
 
-        #name,
-        #days {
-        width: 60%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        }
-
-        .container {
+        .Rentals {
             width: 350px;
             margin: 50px auto;
             background-color: white;
@@ -45,13 +37,20 @@
             font-weight: bold;
         }
 
-        input {
+        input,
+        select {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        #name,
+        #days {
+            width: 60%;
         }
 
         input[type="submit"] {
@@ -66,7 +65,13 @@
             background-color: #0056b3;
         }
 
-
+        .total-box {
+            background-color: #f1f3f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -80,27 +85,42 @@
             <input type="text" id="name" name="name"><br><br>
 
             <label for="equipment">Choose Equipment:</label><br>
-            <select id="equipment" name="equipment">
-                <option value="excavator">Excavator</option>
-                <option value="bulldozer">Bulldozer</option>
-                <option value="forklift">Forklift</option>
-                <option value="scissorlift">Scissor Lift</option>
-                <option value="generator">Generator</option>
-                <option value="aircompressor">Air Compressor</option>
-                <option value="chainsaw">Chainsaw</option>
-                <option value="lawnmower">Lawn Mower</option>
-                <option value="pressurewasher">Pressure Washer</option>
-                <option value="cementmixer">Cement Mixer</option>
-                <option value="drill">Power Drill</option>
-                <option value="ladder">Ladder</option>
+            <select id="equipment" name="equipment" onchange="calculateTotal()">
+                <option value="250">Excavator - $250/day</option>
+                <option value="300">Bulldozer - $300/day</option>
+                <option value="150">Forklift - $150/day</option>
+                <option value="120">Scissor Lift - $120/day</option>
+                <option value="90">Generator - $90/day</option>
+                <option value="75">Air Compressor - $75/day</option>
+                <option value="40">Chainsaw - $40/day</option>
+                <option value="50">Lawn Mower - $50/day</option>
+                <option value="60">Pressure Washer - $60/day</option>
+                <option value="85">Cement Mixer - $85/day</option>
+                <option value="30">Power Drill - $30/day</option>
+                <option value="20">Ladder - $20/day</option>
             </select><br><br>
 
             <label for="days">Rental Days:</label><br>
-            <input type="number" id="days" name="days"><br><br>
+            <input type="number" id="days" name="days" min="1" oninput="calculateTotal()"><br><br>
+
+            <div class="total-box">
+                Total Cost: $<span id="total">0.00</span>
+            </div>
 
             <input type="submit" value="Register Rental">
+            <button onclick="window.location.href='ModifyEquipment.html'">Modify Rental</button>
         </form>
     </div>
+
+    <script>
+        function calculateTotal() {
+            let equipmentPrice = parseFloat(document.getElementById("equipment").value);
+            let rentalDays = parseInt(document.getElementById("days").value) || 0;
+            let total = equipmentPrice * rentalDays;
+
+            document.getElementById("total").textContent = total.toFixed(2);
+        }
+    </script>
 
 </body>
 </html>
