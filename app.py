@@ -64,9 +64,9 @@ def register():
             db_session.add(new_user)
             db_session.commit()
             return render_template("Pages/Login.html")
-
+          
         return render_template("Pages/Register.html", errors=errors, form_data=request.form)
-
+      
     return render_template("Pages/Register.html", errors=[], form_data={})
 
 
