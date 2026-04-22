@@ -4,44 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/Register.css">
-    <title>Equipment Rental Register</title>
+    <title>Equipment Rental Login</title>
 </head>
 <body>
+    {% if errors %}
+        <ul class="errors">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <div class="container">
         <h1>Rental Stuff LLC</h1>
-        <h2>Register</h2>
+        <h2>Login</h2>
 
-        <form action="{{url_for('register')}}" method="POST">
+        <form action="{{ url_for('login') }}" method="POST">
 
             <label>First Name:</label>
-            <input type="text" id="firstName" required>
+            <input type="text" id="firstName" name="firstname" value="{{ form_data.get('firstname', '') }}" required>
 
             <label>Last Name:</label>
-            <input type="text" id="lastName" required>
-
-            <label>Email Address:</label>
-            <input type="email" id="email" required>
-
-            <label>Phone Number:</label>
-            <input type="tel" id="phone" required>
-
-            <label>Home Address:</label>
-            <input type="text" id="address" required>
-
-            <label>Driver License Number:</label>
-            <input type="text" id="license" required>
+            <input type="text" id="lastName" name="lastname" value="{{ form_data.get('lastname', '') }}" required>
 
             <label>Username:</label>
-            <input type="text" id="username" required>
+            <input type="text" id="username" name="username" value="{{ form_data.get('username', '') }}" required>
 
             <label>Password:</label>
-            <input type="password" id="password" required>
+            <input type="password" id="password" name="password" value="{{ form_data.get('password', '') }}" required>
 
             <label>Confirm Password:</label>
-            <input type="password" id="confirmPassword" required>
+            <input type="password" id="confirmPassword" name="confirmpassword" value="{{ form_data.get('confirmpassword', '') }}" required>
 
-            <input type="submit" value="Register">
+            <button type="submit">Login Account</button>
         </form>
     </div>
 

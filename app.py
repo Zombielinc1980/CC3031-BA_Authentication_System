@@ -35,7 +35,7 @@ def login():
         return render_template("Pages/Dashboard.html")
     return render_template("Pages/Login.html", form_data={}, errors=[])
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     errors = []
 
