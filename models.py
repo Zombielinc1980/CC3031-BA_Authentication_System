@@ -19,4 +19,3 @@ class User(Base):
     username = Column(String, nullable=False)
     password_hash = Column(String, nullable=False)
     salt = Column(String, nullable=False)
-    encryption_key = Column(String, nullable=False)

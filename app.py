@@ -1,14 +1,15 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session
 from models import Base, User, engine, db_session
-from security import hash_password, check_password, generate_salt, generate_key, encrypt_data, decrypt_data
+from security import hash_password, check_password, generate_salt
 
 
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
+Base.metadata.create_all(engine)
 
 def get_logged_in_user():
     user_id = session.get("user_id")
@@ -27,12 +28,18 @@ def login():
         password = request.form.get("password", "")
 
         user = db_session.query(User).filter_by(username=username).first()
-        if not user or not check_password(user.password_hash, password, user.salt):
-            errors.append("Invalid username or password.")
+        if not user and username:
+            errors.append("user does not exist.")
+            return render_template("Pages/Login.html", form_data=request.form, errors=errors)
+        if not username:
+            errors.append("Please enter a username.")
+        if not check_password(user.password_hash, password, user.salt):
+            errors.append("Incorrect password.")
+        if errors:
             return render_template("Pages/Login.html", form_data=request.form, errors=errors)
 
         session["user_id"] = user.id
-        return render_template("Pages/Dashboard.html")
+        return redirect(url_for("dashboard"))
     return render_template("Pages/Login.html", form_data={}, errors=[])
 
 @app.route("/register", methods=["GET", "POST"])
@@ -40,30 +47,40 @@ def register():
     errors = []
 
     if request.method == "POST":
+        firstname = request.form.get("firstname", "").strip()
+        lastname = request.form.get("lastname", "").strip()
         username = request.form.get("username", "").strip()
         password = request.form.get("password", "")
+        confirmpassword = request.form.get("confirmpassword", "")
 
+        if not firstname:
+            errors.append("First name is required.")
+        if not lastname:
+            errors.append("Last name is required.")
         if not username:
             errors.append("Username is required.")
         if not password:
             errors.append("Password is required.")
+        if confirmpassword != password:
+            errors.append("Password does not match.")
 
         existing_user = db_session.query(User).filter_by(username=username).first()
         if existing_user:
             errors.append("That username already exists.")
 
-        salt = generate_salt()
-
         if not errors:
+            salt = generate_salt()
+
             new_user = User(
+                firstname=firstname,
+                lastname=lastname,
                 username=username,
                 password_hash=hash_password(password, salt),
                 salt=salt,
-                encryption_key=generate_key()
             )
             db_session.add(new_user)
             db_session.commit()
-            return render_template("Pages/Login.html")
+            return redirect(url_for("login"))
           
         return render_template("Pages/Register.html", errors=errors, form_data=request.form)
       

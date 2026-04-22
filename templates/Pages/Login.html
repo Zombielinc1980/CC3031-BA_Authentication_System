@@ -21,20 +21,11 @@
 
         <form action="{{ url_for('login') }}" method="POST">
 
-            <label>First Name:</label>
-            <input type="text" id="firstName" name="firstname" value="{{ form_data.get('firstname', '') }}" required>
-
-            <label>Last Name:</label>
-            <input type="text" id="lastName" name="lastname" value="{{ form_data.get('lastname', '') }}" required>
-
             <label>Username:</label>
             <input type="text" id="username" name="username" value="{{ form_data.get('username', '') }}" required>
 
             <label>Password:</label>
             <input type="password" id="password" name="password" value="{{ form_data.get('password', '') }}" required>
-
-            <label>Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmpassword" value="{{ form_data.get('confirmpassword', '') }}" required>
 
             <button type="submit">Login Account</button>
         </form>
