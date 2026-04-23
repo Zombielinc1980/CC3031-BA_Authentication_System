@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Rental Account</title>
+    <link rel="stylesheet" href="../CSS/CreateRental.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Rental Stuff LLC</h1>
+        <h2>Create Rental Account</h2>
+
+        <form onsubmit="return validateForm()">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="username" placeholder="Enter username" required>
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="username" placeholder="Enter username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter address" required>
+
+            <label for="equipment">Choose Equipment:</label>
+            <select id="equipment" name="equipment" onchange="calculateTotal()" required>
+                <option value="">-- Select Equipment --</option>
+                <option value="250">Excavator - $250/day</option>
+                <option value="300">Bulldozer - $300/day</option>
+                <option value="150">Forklift - $150/day</option>
+                <option value="120">Scissor Lift - $120/day</option>
+                <option value="90">Generator - $90/day</option>
+                <option value="75">Air Compressor - $75/day</option>
+                <option value="40">Chainsaw - $40/day</option>
+                <option value="50">Lawn Mower - $50/day</option>
+                <option value="60">Pressure Washer - $60/day</option>
+                <option value="85">Cement Mixer - $85/day</option>
+                <option value="30">Power Drill - $30/day</option>
+                <option value="20">Ladder - $20/day</option>
+            </select>
+
+            <label for="days">Number of Days:</label>
+            <input type="number" id="days" name="days" min="1" value="1" onchange="calculateTotal()" required>
+
+            <label for="cardname">Name on Card:</label>
+            <input type="text" id="cardname" name="cardname" placeholder="Enter name on card" required>
+
+            <label for="cardnumber">Credit Card Number:</label>
+            <input type="text" id="cardnumber" name="cardnumber" placeholder="1234 5678 9012 3456" required>
+
+            <div class="row">
+                <div>
+                    <label for="expdate">Expiration Date:</label>
+                    <input type="month" id="expdate" name="expdate" required>
+                </div>
+
+                <div>
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                </div>
+            </div>
+
+            <button type="submit">Create Rental Account</button>
+        </form>
+    </div>
+
+</body>
+</html>
