@@ -13,9 +13,8 @@ app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 Base.metadata.create_all(engine)
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    app.run(host="0.0.0.0", port=port)
+
+
 
 def get_logged_in_user():
     user_id = session.get("user_id")
@@ -127,3 +126,5 @@ def revenue_reports():
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host="0.0.0.0", port=port)
