@@ -1,13 +1,20 @@
 from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship
+import os
 
 Base = declarative_base()
+
+if os.path.exists("/home"):
+    db_path = "sqlite:////home/users.db"  # Azure
+else:
+    db_path = "sqlite:///users.db"        # Local
 
 engine = create_engine("sqlite:///users.db")
 Session = sessionmaker(bind=engine)
 db_session = Session()
 
 def get_session():
+    
     return db_session
 
 class User(Base):
