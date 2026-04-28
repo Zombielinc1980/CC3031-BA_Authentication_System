@@ -12,3 +12,6 @@ env/
 # OS stuff
 .DS_Store
 Thumbs.db
+
+# Database
+users.db
