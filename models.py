@@ -9,7 +9,7 @@ if os.path.exists("/home"):
 else:
     db_path = "sqlite:///users.db"        # Local
 
-engine = create_engine("sqlite:///users.db")
+engine = create_engine(db_path)
 Session = sessionmaker(bind=engine)
 db_session = Session()
 
