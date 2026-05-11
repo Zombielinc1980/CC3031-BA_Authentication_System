@@ -27,15 +27,13 @@
             <label>Password:</label>
             <input type="password" id="password" name="password" value="{{ form_data.get('password', '') }}" required>
 
-            <input type="submit" value="Log In">
+            <button>Log In</button>
         </form>
 
-        <div>
-            <h3>
-                Don't have an account? Register <a href="/register">here</a>.
-            </h3>
+        <div class="footer">
+            <h3>Don't have an account?</h3>
+            <a href="/register">Register Here</a>
         </div>
     </div>
-
 </body>
 </html>
